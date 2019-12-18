@@ -11,7 +11,8 @@ cascade_smile = cv2.CascadeClassifier('haarcascade_smile.xml')
 def detection(grayscale, img):  # we work on the grayscale pic but also want to show the rvb pic
     # Detect the face : image, scale of the window, min of neighbor zones
     face = cascade_face.detectMultiScale(grayscale, 1.3, 5)
-    for (x_face, y_face, w_face, y_face), (x_face + w_face, y_face+h_face), (255, 130, 0), 2)  # draw the triangles : x,y : upper hand corner; w,h : height and width
+    for (x_face, y_face, w_face, y_face) in face:
+        cv2.rectangle(img, (x_face + w_face, y_face+h_face), (255, 130, 0), 2)  # draw the triangles : x,y : upper hand corner; w,h : height and width
     # Interest region
     ri_grayscale = grayscale[y_face:y_face+h_face, x_face:x_face+w_face]
     ri_color = img[y_face:y_face+h_face, x_face:x_face+w_face] 
